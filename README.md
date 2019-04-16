@@ -1,4 +1,4 @@
-Please read [here](https://weinstockj.github.io/htslibr) for documentation for the R package. To install
+Please read [here](https://weinstockj.github.io/htslibr) for documentation of the htslibr R package. To install
 this package, you can use 
 `remotes::install_github(repo = "weinstockj/htslibr", subdir = "htslibr")`
 
