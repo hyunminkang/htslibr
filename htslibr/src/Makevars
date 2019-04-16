@@ -1,0 +1,18 @@
+HTSLIB_DIR=htslib
+
+.PHONY: all htslib copy_headers
+
+INCLUDE_DIR=${R_PACKAGE_DIR}/inst/include
+
+all: htslib copy_headers
+
+htslib:
+	$(warning "now building libhts.so")
+	cd $(HTSLIB_DIR) && $(MAKE) -f "${R_HOME}/etc/Makeconf" -f Makefile
+
+copy_headers:
+	mkdir -p $(INCLUDE_DIR)
+	cp $(HTSLIB_DIR)/htslib/*.h $(INCLUDE_DIR)
+
+PKG_LIBS= -lhts
+CXX_STD = CXX11

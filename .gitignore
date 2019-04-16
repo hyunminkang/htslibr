@@ -1,0 +1,10 @@
+*.bam
+*.cram
+*.bai
+*.crai
+*.o
+*.so
+*.dll
+.ycm_extra_conf.py
+*.tar.gz
+
