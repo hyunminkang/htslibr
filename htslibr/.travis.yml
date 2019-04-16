@@ -1,0 +1,13 @@
+language: r
+
+addons:
+    apt:
+        packages:
+            - zlib
+            - libbz2
+            - liblzma 
+            - libcurl
+            - libcrypto
+
+before_install:
+    - cd htslibr
