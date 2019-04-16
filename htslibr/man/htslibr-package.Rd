@@ -8,8 +8,6 @@
   The DESCRIPTION file: \packageDESCRIPTION{htslibr}
   \packageIndices{htslibr}
 
-  This section should provide a more detailed overview of how to use the
-  package, including the most important functions.
 }
 \author{
   \packageAuthor{htslibr}

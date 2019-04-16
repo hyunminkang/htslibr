@@ -5,12 +5,12 @@
 
 using namespace Rcpp;
 
-// test_fn
-void test_fn();
-RcppExport SEXP _htslibr_test_fn() {
+// htslib_version
+void htslib_version();
+RcppExport SEXP _htslibr_htslib_version() {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
-    test_fn();
+    htslib_version();
     return R_NilValue;
 END_RCPP
 }
@@ -81,7 +81,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_htslibr_test_fn", (DL_FUNC) &_htslibr_test_fn, 0},
+    {"_htslibr_htslib_version", (DL_FUNC) &_htslibr_htslib_version, 0},
     {"_htslibr_check_format", (DL_FUNC) &_htslibr_check_format, 1},
     {"_htslibr_extract_sequence", (DL_FUNC) &_htslibr_extract_sequence, 3},
     {"_htslibr_count_kmer", (DL_FUNC) &_htslibr_count_kmer, 4},

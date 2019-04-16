@@ -1,13 +1,15 @@
 Package: htslibr
 Type: Package
-Title: What the Package Does in One 'Title Case' Line
+Title: A Wrapper for htslib
 Version: 1.0
 Date: 2019-04-08
-Author: Your Name
-Maintainer: Your Name <your@email.com>
-Description: One paragraph description of what the package does as one
-        or more full sentences.
+Author: Josh Weinstock
+Maintainer: Josh Weinstock <jweinstk@umich.edu>
+Description: This R package wraps htslib, and can be built from a Makefile
+that will pull the latest htslib source and reconstruct the R package. Some 
+added utilities are also included for calculating GC content and depths. 
 License: GPL (>= 2)
 Imports: Rcpp (>= 1.0.1)
 LinkingTo: Rcpp
 RoxygenNote: 6.1.0
+Encoding: UTF-8
