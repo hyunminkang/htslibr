@@ -5,9 +5,7 @@ Version: 1.0
 Date: 2019-04-08
 Author: Josh Weinstock
 Maintainer: Josh Weinstock <jweinstk@umich.edu>
-Description: This R package wraps htslib, and can be built from a Makefile
-that will pull the latest htslib source and reconstruct the R package. Some 
-added utilities are also included for calculating GC content and depths. 
+Description: This R package wraps htslib, and can be built from a Makefile that will pull the latest htslib sourc and reconstruct the R package. Some added utilities are also included for calculating GC content and depths. 
 License: GPL (>= 2)
 Imports: Rcpp (>= 1.0.1)
 LinkingTo: Rcpp
