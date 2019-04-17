@@ -15,3 +15,4 @@ copy_headers:
 	cp $(HTSLIB_DIR)/htslib/*.h $(INCLUDE_DIR)
 
 PKG_LIBS= -lhts
+CXX_STD = CXX11
