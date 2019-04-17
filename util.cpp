@@ -4,20 +4,26 @@
 using namespace Rcpp;
 using namespace std;
 
-//[[Rcpp::export]]
-void test_fn() {
+//' title print htslib version
+//' Print out htslib version
+// [[Rcpp::export]]
+void htslib_version() {
     Rcout << hts_version() << endl;
 }
 
-
-// check_format("../../../NA12878.cram")
-//[[Rcpp::export]]
+//' Detect format of the file
+//' @param fname the file to detect the format of
+// [[Rcpp::export]]
 std::string check_format(std::string fname) {
     htsFile *fp = hts_open(fname.c_str(), "r");
     const htsFormat *fmt = hts_get_format(fp);
     return std::string(hts_format_description(fmt));
 }
 
+//' Extract the sequences for a given region
+//' @param bam the cram/bam/sam file
+//' @param index the index of the cram/bam/sam file
+//' @param reg the region of interest, typically in format of chr1:start-begin
 //[[Rcpp::export]]
 CharacterVector extract_sequence(std::string bam, std::string index, std::string reg) {
     htsFile *fp = hts_open(bam.c_str(), "r");
@@ -74,7 +80,12 @@ int count_kmer_seq(const std::string& seq, const std::string& kmer)
     return count;
 }
 
-//[[Rcpp::export]]
+//' count the number of times a kmer is present in a region
+//' @param bam the cram/bam/sam file
+//' @param index the index of the cram/bam/sam file
+//' @param reg the region of interest, typically in format of chr1:start-begin
+//' @param kmer the substring to search for in the reads
+// [[Rcpp::export]]
 DataFrame count_kmer(std::string bam, std::string index, const std::string& reg, const std::string& kmer) {
     htsFile *fp = hts_open(bam.c_str(), "r");
 
@@ -111,6 +122,10 @@ DataFrame count_kmer(std::string bam, std::string index, const std::string& reg,
     );
 }
 
+//' Calculate the GC content for a region
+//' @param bam the cram/bam/sam file
+//' @param index the index of the cram/bam/sam file
+//' @param reg the region of interest, typically in format of chr1:start-begin
 //[[Rcpp::export]]
 DataFrame gc_content(std::string bam, std::string index, const std::string& reg) {
     htsFile *fp = hts_open(bam.c_str(), "r");
@@ -155,6 +170,10 @@ DataFrame gc_content(std::string bam, std::string index, const std::string& reg)
     );
 }
 
+//' Estimate the depth for each position in a given region
+//' @param bam the cram/bam/sam file
+//' @param index the index of the cram/bam/sam file
+//' @param reg the region of interest, typically in format of chr1:start-begin
 //[[Rcpp::export]]
 DataFrame depth(std::string bam, std::string index, const std::string& reg, const int flank_bp) {
     htsFile *fp = hts_open(bam.c_str(), "r");
