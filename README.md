@@ -4,7 +4,8 @@ this package, you can use
 cd weinstockj/htslibr/
 git submodule update --init --recursive
 cd htslibr/
-R CMD build .```
+R CMD build .
+```
 
 This package was built on a Ubuntu 16.04 system, and has not been tested for portability to 
 OS X or Windows. Not likely to work anywhere where htslib is difficult to compile. 
