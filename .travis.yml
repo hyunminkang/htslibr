@@ -9,4 +9,5 @@ before_install:
   - cd htslibr
 
 install:
+  R -e "install.packages('Rcpp')"
   R CMD build .
