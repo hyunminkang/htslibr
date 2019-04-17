@@ -1,3 +1,11 @@
 language: r
+sudo: false
+
+r:
+  - release
+
 before_install:
   - cd htslibr
+
+install:
+  - R -e 'devtools::build()'
