@@ -1,3 +1,4 @@
+dist: xenial
 language: r
 sudo: false
 
@@ -8,5 +9,4 @@ before_install:
   - cd htslibr
 
 install:
-  - R -e "install.packages('devtools')"
-  - R -e 'devtools::build()'
+  R CMD build .
