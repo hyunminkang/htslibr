@@ -8,5 +8,5 @@ before_install:
   - cd htslibr
 
 install:
-  - git clone --depth 1 https://github.com/r-lib/devtools && R CMD build --no-build-vignettes devtools && R CMD INSTALL devtools*tar.gz && rm -rf devtools devtools*tar.gz
+  - R -e "install.packages('devtools')"
   - R -e 'devtools::build()'
