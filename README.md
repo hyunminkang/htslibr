@@ -1,6 +1,7 @@
 Please read [here](https://weinstockj.github.io/htslibr) for documentation of the htslibr R package. To install
 this package, you can use 
-```git clone --depth=50 --branch=master https://github.com/weinstockj/htslibr.git weinstockj/htslibr
+```
+git clone --depth=50 --branch=master https://github.com/weinstockj/htslibr.git weinstockj/htslibr
 cd weinstockj/htslibr/
 git submodule update --init --recursive
 cd htslibr/
