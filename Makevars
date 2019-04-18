@@ -12,4 +12,4 @@ htslib:
 
 PKG_LIBS= -lhts
 CXX_STD = CXX11
-PKG_CPPFLAGS = -Ihtslib -DSTRICT_R_HEADERS
+PKG_CPPFLAGS = -Ihtslib -DSTRICT_R_HEADERS -Lhtslib
