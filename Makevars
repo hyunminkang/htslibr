@@ -10,10 +10,6 @@ htslib:
 	$(warning "now building libhts.so")
 	cd $(HTSLIB_DIR) && $(MAKE) -f "${R_HOME}/etc/Makeconf" -f Makefile
 
-copy_headers:
-	mkdir -p $(INCLUDE_DIR)
-	cp $(HTSLIB_DIR)/htslib/*.h $(INCLUDE_DIR)
-
 PKG_LIBS= -lhts
 CXX_STD = CXX11
-PKG_CPPFLAGS = -I../inst/include -DSTRICT_R_HEADERS
+PKG_CPPFLAGS = -Ihtslib -DSTRICT_R_HEADERS
