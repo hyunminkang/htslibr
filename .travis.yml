@@ -12,4 +12,5 @@ before_install:
 
 install:
   - R -e "install.packages('Rcpp')"
-  - R CMD build .
+  - R -e "install.packages('pkgbuild')"
+  - R -e "pkgbuild::build()"
