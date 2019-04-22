@@ -11,6 +11,8 @@ before_install:
   - sudo chmod 2777 /usr/lib/R/library
 
 install:
+  - R -e ".libPaths()"
+  - R -e "getwd()"
   - R -e "install.packages('Rcpp')"
   - R -e "install.packages('pkgbuild')"
   - R -e "pkgbuild::build()"
