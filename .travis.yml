@@ -1,18 +1,15 @@
 dist: xenial
 language: r
+sudo: false
+warnings_are_errors: false
+cache: packages
 
 r:
   - release
+  - devel
 
 before_install:
   - cd htslibr
-  - sudo mkdir -p /usr/lib/R/library
-  - echo 'R_LIBS=/usr/lib/R/library:/usr/lib/R/site-library/' > ~/.Renviron
-  - sudo chmod 2777 /usr/lib/R/library
 
-install:
-  - R -e ".libPaths()"
-  - R -e "getwd()"
-  - R -e "install.packages('Rcpp')"
-  - R -e "install.packages('pkgbuild')"
-  - R -e "pkgbuild::build()"
+r_packages:
+  - Rcpp
