@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/weinstockj/htslibr.svg?branch=master)](https://travis-ci.com/weinstockj/htslibr)
+
 Please read [here](https://weinstockj.github.io/htslibr) for documentation of the htslibr R package. To install
 this package, you can use 
 ```
