@@ -14,7 +14,7 @@ htslib:
 $(SHLIB): htslib
 	$(warning "now in ${LIB_DIR}")
 	mkdir -p ${LIB_DIR}
-	cd $(HTSLIB_DIR) && cp libhts.so ${LIB_DIR}
+	cd $(HTSLIB_DIR) && cp libhts.so libhts.so.2to3part5 libhts.a ${LIB_DIR}
 
 PKG_LIBS= -lhts -L${LIB_DIR} -Wl,-rpath=${LIB_DIR} -L${HTSLIB_DIR}
 CXX_STD = CXX11
