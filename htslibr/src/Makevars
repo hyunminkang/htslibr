@@ -16,6 +16,6 @@ $(SHLIB): htslib
 	mkdir -p ${LIB_DIR}
 	cd $(HTSLIB_DIR) && cp libhts.so ${LIB_DIR}
 
-PKG_LIBS= -lhts -L${LIB_DIR} -Wl,-rpath=${LIB_DIR}
+PKG_LIBS= -lhts -L${LIB_DIR} -Wl,-rpath=${LIB_DIR} -L${HTSLIB_DIR}
 CXX_STD = CXX11
 PKG_CPPFLAGS = -Ihtslib -DSTRICT_R_HEADERS
