@@ -1,18 +1,14 @@
 HTSLIB_DIR=htslib
 
-.PHONY: all htslib create_lib_dir copy_so
+.PHONY: all htslib copy_lib
 
 LIB_DIR=${R_PACKAGE_DIR}/lib
 
 all: $(SHLIB)
 
-htslib:
-	$(warning "now building libhts.so")
-	cd $(HTSLIB_DIR) && $(MAKE) -f "${R_HOME}/etc/Makeconf" -f Makefile
-	$(warning "now printing out files")
-	ls -a 
+$(SHLIB): htslib copy_lib
 
-$(SHLIB): htslib
+copy_lib:
 	$(warning "now in ${LIB_DIR}")
 	mkdir -p ${LIB_DIR}
 	cd $(HTSLIB_DIR) && cp libhts.so libhts.so.2to3part5 libhts.a ${LIB_DIR}
@@ -22,6 +18,13 @@ $(SHLIB): htslib
 	cd ${LIB_DIR} && ln -s libhts.so libhts.so.2
 	$(warning "now ls ${LIB_DIR}")
 	ls -a ${LIB_DIR}
+
+htslib:
+	$(warning "now building libhts.so")
+	cd $(HTSLIB_DIR) && $(MAKE) -f "${R_HOME}/etc/Makeconf" -f Makefile
+	$(warning "now printing out files")
+	ls -a 
+
 
 PKG_LIBS= -lhts -L${LIB_DIR} -Wl,-rpath=${LIB_DIR} -L${HTSLIB_DIR}
 CXX_STD = CXX11
