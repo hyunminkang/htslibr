@@ -13,8 +13,9 @@ $(PACKAGE_DIR)/src/htslib/hts.c: $(PACKAGE_DIR)
 $(PACKAGE_DIR)/src/Makevars: $(PACKAGE_DIR) Makevars
 	cp Makevars $</src/
 
-$(PACKAGE_DIR)/src/util.cpp: $(PACKAGE_DIR) util.cpp
-	cp util.cpp $</src/
+$(PACKAGE_DIR)/src/bam_api.cpp: $(PACKAGE_DIR) bam_api.cpp vcf_api.cpp
+	cp bam_api.cpp $</src/
+	cp vcf_api.cpp $</src/
 
 $(PACKAGE_DIR)/inst/include/hts.h: $(PACKAGE_DIR)
 	mkdir -p $</inst/include
