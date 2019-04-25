@@ -4,7 +4,7 @@
 \alias{depth}
 \title{Estimate the depth for each position in a given region}
 \usage{
-depth(bam, index, reg, flank_bp)
+depth(bam, index, reg)
 }
 \arguments{
 \item{bam}{the cram/bam/sam file}
