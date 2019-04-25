@@ -2,12 +2,10 @@
 % Please edit documentation in R/RcppExports.R
 \name{htslib_version}
 \alias{htslib_version}
-\title{title print htslib version
-Print out htslib version}
+\title{print htslib version}
 \usage{
 htslib_version()
 }
 \description{
-title print htslib version
 Print out htslib version
 }

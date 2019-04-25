@@ -9,6 +9,9 @@ check_format(fname)
 \arguments{
 \item{fname}{the file to detect the format of}
 }
+\value{
+a string with the file format description
+}
 \description{
 Detect format of the file
 }

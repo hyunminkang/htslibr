@@ -15,7 +15,13 @@ extract_info(vcf, index, reg, tag)
 
 \item{tag}{the field in the INFO field to extract. Only accepts one string value at this time. Only can extract numeric fields at the moment.}
 }
+\value{
+a dataframe with the chrom, pos, and value of the given INFO field
+}
 \description{
 Use this function to extract the INFO field values for a single INFO field in a give
 region based query.
+}
+\examples{
+\dontrun{extract_info(vcf, index, "1:10001-100500", "AC")}
 }

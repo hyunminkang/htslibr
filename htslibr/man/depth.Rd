@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{depth}
 \alias{depth}
-\title{Estimate the depth for each position in a given region}
+\title{Estimate approximate depth for each position in a given region}
 \usage{
 depth(bam, index, reg)
 }
@@ -13,6 +13,18 @@ depth(bam, index, reg)
 
 \item{reg}{the region of interest, typically in format of chr1:start-begin}
 }
+\value{
+a dataframe with the chrom, position, and approximate depth (three columns)
+}
 \description{
-Estimate the depth for each position in a given region
+Calculate an approximate measure for a given region in a CRAM/BAM file.
+}
+\details{
+This is only an approximate depth, based on the 'fast mode' algorithm from mosdepth.
+It allocates an array for the entire chromosome, an increments each start site and decrements
+each end site, and then takes the cumulative sum. It does not account for mismatches in the alignment,
+hence, the reference to an 'approximate' depth.
+}
+\examples{
+\dontrun{depth(bam, index, "chr1:10001-100050")}
 }

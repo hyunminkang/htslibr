@@ -13,6 +13,12 @@ gc_content(bam, index, reg)
 
 \item{reg}{the region of interest, typically in format of chr1:start-begin}
 }
+\value{
+a dataframe with the sequnce reads, counts of GC bases, and proportion of GC per read
+}
 \description{
 Calculate the GC content for a region
+}
+\examples{
+\dontrun{gc_content(bam, index, "chr1:10001-100050")}
 }

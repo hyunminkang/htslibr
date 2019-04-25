@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Estimate the depth for each position in a given region — depth • htslibr</title>
+<title>Estimate approximate depth for each position in a given region — depth • htslibr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Estimate the depth for each position in a given region — depth" />
+<meta property="og:title" content="Estimate approximate depth for each position in a given region — depth" />
 
-<meta property="og:description" content="Estimate the depth for each position in a given region" />
+<meta property="og:description" content="Calculate an approximate measure for a given region in a CRAM/BAM file." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -94,14 +94,14 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Estimate the depth for each position in a given region</h1>
+    <h1>Estimate approximate depth for each position in a given region</h1>
     
     <div class="hidden name"><code>depth.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Estimate the depth for each position in a given region</p>
+    <p>Calculate an approximate measure for a given region in a CRAM/BAM file.</p>
     
     </div>
 
@@ -124,13 +124,34 @@
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>a dataframe with the chrom, position, and approximate depth (three columns)</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>This is only an approximate depth, based on the 'fast mode' algorithm from mosdepth.
+It allocates an array for the entire chromosome, an increments each start site and decrements
+each end site, and then takes the cumulative sum. It does not account for mismatches in the alignment,
+hence, the reference to an 'approximate' depth.</p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='fu'>depth</span>(<span class='no'>bam</span>, <span class='no'>index</span>, <span class='st'>"chr1:10001-100050"</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+      
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

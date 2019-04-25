@@ -12,6 +12,9 @@ using namespace std;
 //' @param tag the field in the INFO field to extract. Only accepts one string value at this time. Only can extract numeric fields at the moment. 
 //' @description Use this function to extract the INFO field values for a single INFO field in a give
 //' region based query. 
+//' @return a dataframe with the chrom, pos, and value of the given INFO field
+//' @examples
+//' \dontrun{extract_info(vcf, index, "1:10001-100500", "AC")}
 // [[Rcpp::export]]
 DataFrame extract_info(std::string vcf, std::string index, std::string& reg, std::string &tag) {
     htsFile *fp = hts_open(vcf.c_str(), "r");
@@ -150,6 +153,9 @@ DataFrame extract_info(std::string vcf, std::string index, std::string& reg, std
 //' IntegerMatrix of dimensions haplotypes x variants. That is, each (diploid) individual will have two consecutve rows.
 //' No existing support for using the phase of the genotypes (if present) or for handling missing values or
 //' variable ploidy. 
+//' @return a integer matrix of dimension (number of haplotypes x number of variants).
+//' @examples
+//' \dontrun{extract_genotypes(vcf, index, "1:10001-100500")}
 // [[Rcpp::export]]
 SEXP extract_genotypes(std::string vcf, std::string index, std::string& reg) {
     htsFile *fp = hts_open(vcf.c_str(), "r");

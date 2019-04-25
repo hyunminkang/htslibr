@@ -13,6 +13,12 @@ extract_sequence(bam, index, reg)
 
 \item{reg}{the region of interest, typically in format of chr1:start-begin}
 }
+\value{
+a character vector with the sequences in the given region
+}
 \description{
 Extract the sequences for a given region
+}
+\examples{
+\dontrun{count_kmer(bam, index, "chr1:10001-100050")}
 }

@@ -13,9 +13,15 @@ extract_genotypes(vcf, index, reg)
 
 \item{reg}{a region query of the form: chr:start-end}
 }
+\value{
+a integer matrix of dimension (number of haplotypes x number of variants).
+}
 \description{
 Use this function to extract the genotypes from the GT field. Will return as a 
 IntegerMatrix of dimensions haplotypes x variants. That is, each (diploid) individual will have two consecutve rows.
 No existing support for using the phase of the genotypes (if present) or for handling missing values or
 variable ploidy.
+}
+\examples{
+\dontrun{extract_genotypes(vcf, index, "1:10001-100500")}
 }

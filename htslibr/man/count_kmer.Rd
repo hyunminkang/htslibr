@@ -15,6 +15,12 @@ count_kmer(bam, index, reg, kmer)
 
 \item{kmer}{the substring to search for in the reads}
 }
+\value{
+a dataframe with the sequnce reads and counts of the given kmer per read (i.e. two columns)
+}
 \description{
 count the number of times a kmer is present in a region
+}
+\examples{
+\dontrun{count_kmer(bam, index, "chr1:10001-100050", "TTACGG")}
 }

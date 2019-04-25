@@ -1,17 +1,12 @@
 #include<Rcpp.h>
 #include "htslib/hts.h"
 #include "htslib/sam.h"
-#include "htslib/kstring.h"
-#include "htslib/hts_defs.h"
-#include "htslib/hts_endian.h"
-#include "htslib/bgzf.h"
 #include "htslib/vcf.h"
-#include "htslib/tbx.h"
 using namespace Rcpp;
 using namespace std;
 
-//' title print htslib version
-//' Print out htslib version
+//' @title print htslib version
+//' @description Print out htslib version
 // [[Rcpp::export]]
 void htslib_version() {
     Rcout << hts_version() << endl;
@@ -19,6 +14,7 @@ void htslib_version() {
 
 //' Detect format of the file
 //' @param fname the file to detect the format of
+//' @return a string with the file format description
 // [[Rcpp::export]]
 std::string check_format(std::string fname) {
     htsFile *fp = hts_open(fname.c_str(), "r");
@@ -30,6 +26,9 @@ std::string check_format(std::string fname) {
 //' @param bam the cram/bam/sam file
 //' @param index the index of the cram/bam/sam file
 //' @param reg the region of interest, typically in format of chr1:start-begin
+//' @return a character vector with the sequences in the given region
+//' @examples
+//' \dontrun{count_kmer(bam, index, "chr1:10001-100050")}
 //[[Rcpp::export]]
 CharacterVector extract_sequence(std::string bam, std::string index, std::string reg) {
     htsFile *fp = hts_open(bam.c_str(), "r");
@@ -78,6 +77,9 @@ int count_kmer_seq(const std::string& seq, const std::string& kmer)
 //' @param index the index of the cram/bam/sam file
 //' @param reg the region of interest, typically in format of chr1:start-begin
 //' @param kmer the substring to search for in the reads
+//' @return a dataframe with the sequnce reads and counts of the given kmer per read (i.e. two columns)
+//' @examples
+//' \dontrun{count_kmer(bam, index, "chr1:10001-100050", "TTACGG")}
 // [[Rcpp::export]]
 DataFrame count_kmer(std::string bam, std::string index, const std::string& reg, const std::string& kmer) {
     htsFile *fp = hts_open(bam.c_str(), "r");
@@ -119,6 +121,9 @@ DataFrame count_kmer(std::string bam, std::string index, const std::string& reg,
 //' @param bam the cram/bam/sam file
 //' @param index the index of the cram/bam/sam file
 //' @param reg the region of interest, typically in format of chr1:start-begin
+//' @return a dataframe with the sequnce reads, counts of GC bases, and proportion of GC per read
+//' @examples
+//' \dontrun{gc_content(bam, index, "chr1:10001-100050")}
 //[[Rcpp::export]]
 DataFrame gc_content(std::string bam, std::string index, const std::string& reg) {
     htsFile *fp = hts_open(bam.c_str(), "r");
@@ -163,10 +168,18 @@ DataFrame gc_content(std::string bam, std::string index, const std::string& reg)
     );
 }
 
-//' Estimate the depth for each position in a given region
+//' Estimate approximate depth for each position in a given region
 //' @param bam the cram/bam/sam file
 //' @param index the index of the cram/bam/sam file
 //' @param reg the region of interest, typically in format of chr1:start-begin
+//' @description Calculate an approximate measure for a given region in a CRAM/BAM file. 
+//' @details This is only an approximate depth, based on the 'fast mode' algorithm from mosdepth.
+//' It allocates an array for the entire chromosome, an increments each start site and decrements
+//' each end site, and then takes the cumulative sum. It does not account for mismatches in the alignment,
+//' hence, the reference to an 'approximate' depth. 
+//' @return a dataframe with the chrom, position, and approximate depth (three columns)
+//' @examples
+//' \dontrun{depth(bam, index, "chr1:10001-100050")}
 //[[Rcpp::export]]
 DataFrame depth(std::string bam, std::string index, const std::string& reg) {
     htsFile *fp = hts_open(bam.c_str(), "r");
@@ -211,10 +224,11 @@ DataFrame depth(std::string bam, std::string index, const std::string& reg) {
     int start = 0;
     int end = 0;
     while((r = sam_itr_next(fp, itr, b)) >= 0) {
+        // see https://github.com/brentp/mosdepth/blob/master/mosdepth.nim#L308
+        // similar to the mosdepth fast algorithm
         c = &b->core;
         start =  c->pos;
         end =  bam_endpos(b);
-        Rcout << "start " << start << " end " << end << endl;
         coverage[start]++; // incremement start of read
         coverage[end]--; // decrement end of read
     }
