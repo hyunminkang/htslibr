@@ -21,10 +21,11 @@ $(PACKAGE_DIR)/inst/include/hts.h: $(PACKAGE_DIR)
 	mkdir -p $</inst/include
 	cp $(PACKAGE_DIR)/src/htslib/htslib/*.h $</inst/include
 	
-htslibr_1.0.tar.gz: $(PACKAGE_DIR)/src/htslib/hts.c $(PACKAGE_DIR)/src/Makevars $(PACKAGE_DIR)/inst/include/hts.h $(PACKAGE_DIR)/src/util.cpp
-	cd $(PACKAGE_DIR) && Rscript -e "devtools::build()"
+htslibr_1.0.tar.gz: $(PACKAGE_DIR)/src/htslib/hts.c $(PACKAGE_DIR)/src/Makevars $(PACKAGE_DIR)/inst/include/hts.h $(PACKAGE_DIR)/src/bam_api.cpp
+	cd $(PACKAGE_DIR) && R -e "devtools::build()"
 
-# install: $(PACKAGE_DIR) $(PACKAGE_DIR)/src/htslib htslibr_1.0.tar.gz
+install: $(PACKAGE_DIR) $(PACKAGE_DIR)/src/htslib htslibr_1.0.tar.gz
+	cd $(PACKAGE_DIR) && R -e "devtools::install()"
 
 clean:
 	rm -rf $(PACKAGE_DIR)
