@@ -42,7 +42,30 @@ gc_content <- function(bam, index, reg) {
 #' @param bam the cram/bam/sam file
 #' @param index the index of the cram/bam/sam file
 #' @param reg the region of interest, typically in format of chr1:start-begin
-depth <- function(bam, index, reg, flank_bp) {
-    .Call(`_htslibr_depth`, bam, index, reg, flank_bp)
+depth <- function(bam, index, reg) {
+    .Call(`_htslibr_depth`, bam, index, reg)
+}
+
+#' extract values from the INFO field
+#' @param vcf the VCF/BCF file path
+#' @param index the CSI/TBI index file path
+#' @param reg a region query of the form: chr:start-end 
+#' @param tag the field in the INFO field to extract. Only accepts one string value at this time. Only can extract numeric fields at the moment. 
+#' @description Use this function to extract the INFO field values for a single INFO field in a give
+#' region based query. 
+extract_info <- function(vcf, index, reg, tag) {
+    .Call(`_htslibr_extract_info`, vcf, index, reg, tag)
+}
+
+#' extract the genotypes for a given region from the GT field
+#' @param vcf the VCF/BCF file path
+#' @param index the CSI/TBI index file path
+#' @param reg a region query of the form: chr:start-end 
+#' @description Use this function to extract the genotypes from the GT field. Will return as a 
+#' IntegerMatrix of dimensions haplotypes x variants. That is, each (diploid) individual will have two consecutve rows.
+#' No existing support for using the phase of the genotypes (if present) or for handling missing values or
+#' variable ploidy. 
+extract_genotypes <- function(vcf, index, reg) {
+    .Call(`_htslibr_extract_genotypes`, vcf, index, reg)
 }
 

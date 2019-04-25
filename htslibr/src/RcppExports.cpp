@@ -66,16 +66,42 @@ BEGIN_RCPP
 END_RCPP
 }
 // depth
-DataFrame depth(std::string bam, std::string index, const std::string& reg, const int flank_bp);
-RcppExport SEXP _htslibr_depth(SEXP bamSEXP, SEXP indexSEXP, SEXP regSEXP, SEXP flank_bpSEXP) {
+DataFrame depth(std::string bam, std::string index, const std::string& reg);
+RcppExport SEXP _htslibr_depth(SEXP bamSEXP, SEXP indexSEXP, SEXP regSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< std::string >::type bam(bamSEXP);
     Rcpp::traits::input_parameter< std::string >::type index(indexSEXP);
     Rcpp::traits::input_parameter< const std::string& >::type reg(regSEXP);
-    Rcpp::traits::input_parameter< const int >::type flank_bp(flank_bpSEXP);
-    rcpp_result_gen = Rcpp::wrap(depth(bam, index, reg, flank_bp));
+    rcpp_result_gen = Rcpp::wrap(depth(bam, index, reg));
+    return rcpp_result_gen;
+END_RCPP
+}
+// extract_info
+DataFrame extract_info(std::string vcf, std::string index, std::string& reg, std::string& tag);
+RcppExport SEXP _htslibr_extract_info(SEXP vcfSEXP, SEXP indexSEXP, SEXP regSEXP, SEXP tagSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type vcf(vcfSEXP);
+    Rcpp::traits::input_parameter< std::string >::type index(indexSEXP);
+    Rcpp::traits::input_parameter< std::string& >::type reg(regSEXP);
+    Rcpp::traits::input_parameter< std::string& >::type tag(tagSEXP);
+    rcpp_result_gen = Rcpp::wrap(extract_info(vcf, index, reg, tag));
+    return rcpp_result_gen;
+END_RCPP
+}
+// extract_genotypes
+SEXP extract_genotypes(std::string vcf, std::string index, std::string& reg);
+RcppExport SEXP _htslibr_extract_genotypes(SEXP vcfSEXP, SEXP indexSEXP, SEXP regSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type vcf(vcfSEXP);
+    Rcpp::traits::input_parameter< std::string >::type index(indexSEXP);
+    Rcpp::traits::input_parameter< std::string& >::type reg(regSEXP);
+    rcpp_result_gen = Rcpp::wrap(extract_genotypes(vcf, index, reg));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -86,7 +112,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"_htslibr_extract_sequence", (DL_FUNC) &_htslibr_extract_sequence, 3},
     {"_htslibr_count_kmer", (DL_FUNC) &_htslibr_count_kmer, 4},
     {"_htslibr_gc_content", (DL_FUNC) &_htslibr_gc_content, 3},
-    {"_htslibr_depth", (DL_FUNC) &_htslibr_depth, 4},
+    {"_htslibr_depth", (DL_FUNC) &_htslibr_depth, 3},
+    {"_htslibr_extract_info", (DL_FUNC) &_htslibr_extract_info, 4},
+    {"_htslibr_extract_genotypes", (DL_FUNC) &_htslibr_extract_genotypes, 3},
     {NULL, NULL, 0}
 };
 
